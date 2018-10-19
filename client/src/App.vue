@@ -5,7 +5,16 @@
     </header>
 
     <div class="main-content">
-      This is the main content
+      <div class="row">
+
+        <classroom />
+        <classroom />
+        <classroom />
+        <classroom />
+        <classroom />
+        <classroom />
+
+      </div>
     </div>
 
     <footer>
@@ -15,17 +24,16 @@
 </template>
 
 <script>
+import classroom from './components/classroom'
+
 export default {
   name: 'app',
+  components: { classroom }
   // asyncData () {
+  //   console.log('asyncData running');
   //   const students = $.get('/students')
   //   return students
-  // },
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
+  // }
 }
 </script>
 
@@ -34,26 +42,31 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+body{
+  margin: 0px;
 }
 
-h1, h2 {
-  font-weight: normal;
+header, footer{
+  width: 100%;
+  height: 110px;
+  background-color: #1b1b1b;
+  color: #dbdbdb;
+  padding: 20px;
+  text-align: left;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+header{
+  font-size: 50px;
 }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
+footer{
+  font-size: 20px;
 }
 
-a {
-  color: #42b983;
+.main-content{
+  min-height: 100vh;
+  padding: 50px;
 }
 </style>
