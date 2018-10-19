@@ -6,11 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "knex-create-migrate":"knex migrate:make create_tables",
-    "knex-create-seed":"knex seed:make students && knex seed:make classes && knex seed:make teachers",
-    "knex-seed":"knex seed:run",
-    "rollback":"knex migrate:rollback",
-    "latest":"knex migrate:latest"
+    "knex-create-migrate": "knex migrate:make create_tables",
+    "knex-create-seed": "knex seed:make students && knex seed:make classes && knex seed:make teachers",
+    "knex-seed": "knex seed:run",
+    "rollback": "knex migrate:rollback",
+    "latest": "knex migrate:latest",
+    "webpack": "webpack"
   },
   "author": "David Gibb",
   "license": "MIT",
@@ -18,7 +19,8 @@
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "knex": "^0.15.2",
-    "pg": "^7.5.0"
+    "pg": "^7.5.0",
+    "vue": "^2.5.17"
   },
   "devDependencies": {
     "eslint": "^5.7.0",
@@ -27,6 +29,19 @@
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^4.7.1"
+    "eslint-plugin-vue": "^4.7.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.4",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
   }
 }
