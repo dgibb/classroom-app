@@ -7,12 +7,12 @@
     <div class="main-content">
       <div class="row">
 
-        <classroom />
-        <classroom />
-        <classroom />
-        <classroom />
-        <classroom />
-        <classroom />
+        <classroom v-for="eachClass in classes"
+          :studentList="eachClass.studentList"
+          :classId="eachClass.id"
+          :roomNumber="eachClass.room_number"
+          :key="eachClass.class_id"
+        />
 
       </div>
     </div>
@@ -24,16 +24,39 @@
 </template>
 
 <script>
+import axios from 'axios'
+import _ from 'lodash'
 import classroom from './components/classroom'
 
 export default {
   name: 'app',
-  components: { classroom }
-  // asyncData () {
-  //   console.log('asyncData running');
-  //   const students = $.get('/students')
-  //   return students
-  // }
+  components: { classroom },
+  data () {
+    return {
+      classes: {}
+    }
+  },
+  created () {
+    Promise.resolve(this.getClassesfromDatabase())
+      .then(this.getStudentsFromDatabase())
+  },
+  methods: {
+    getClassesfromDatabase: function () {
+      axios.get('/classes').then(response => {
+        _.map(response.data.rows, ())
+        _.map(this.classes, (eachClass) => {
+          eachClass.studentList = []
+        })
+      })
+    },
+    getStudentsFromDatabase: function () {
+      axios.get('/students').then(response => {
+        _.map(response.data.rows, (student) => {
+          this.classes[student.class_id].studentList.push(student)
+        })
+      })
+    }
+  }
 }
 </script>
 
