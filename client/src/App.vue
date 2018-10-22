@@ -33,7 +33,7 @@ export default {
   components: { classroom },
   data () {
     return {
-      classes: {}
+      classes: []
     }
   },
   created () {
@@ -43,7 +43,7 @@ export default {
   methods: {
     getClassesfromDatabase: function () {
       axios.get('/classes').then(response => {
-        _.map(response.data.rows, ())
+        this.classes = response.data.rows
         _.map(this.classes, (eachClass) => {
           eachClass.studentList = []
         })
