@@ -32,7 +32,6 @@ app.get('/teachers', (req, res) => {
 })
 
 app.post('/students/new', (req, res) => {
-  console.log(req.body);
   try {
     knex('students').insert(req.body).returning('id').then(id => {
       res.send(id)
