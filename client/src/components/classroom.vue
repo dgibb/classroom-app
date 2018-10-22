@@ -2,8 +2,8 @@
   <div class="classroom col-lg-6">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title class">class #1</h3>
-        <h3 class="panel-title room">Room #101</h3>
+        <h3 class="panel-title class">class #{{classId}}</h3>
+        <h3 class="panel-title room">Room #{{roomNumber}}</h3>
       </div>
       <div class="panel-body">
         <table class="table">
@@ -17,7 +17,7 @@
           </thead>
           <tbody>
             <student
-            v-for="student in studentList"
+            v-for="student in mutStudentList"
             :firstName="student.first_name"
             :lastName="student.last_name"
             :id="student.id"
@@ -48,16 +48,15 @@ import student from './student'
 
 export default {
   name: 'classroom',
+  props: {
+    studentList: Array,
+    classId: Number,
+    roomNumber: Number
+  },
   data () {
     return {
       adding: false,
-      studentList: [
-        { id: 1, first_name: 'Harry', last_name: 'Jackson', class_id: 1 },
-        { id: 2, first_name: 'Kathy', last_name: 'Freidman', class_id: 1 },
-        { id: 3, first_name: 'Frank', last_name: 'Sherman', class_id: 1 },
-        { id: 4, first_name: 'Betty', last_name: 'Leary', class_id: 1 },
-        { id: 5, first_name: 'Kevin', last_name: 'Burns', class_id: 1 }
-      ]
+      mutStudentList: this.studentList || []
     }
   },
   methods: {

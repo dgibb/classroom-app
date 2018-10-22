@@ -19,7 +19,7 @@ app.get('/students', (req, res) => {
 })
 app.get('/classes', (req, res) => {
   knex.raw('select * from classes').then((classes) => {
-    res.send(teachers)
+    res.send(classes)
   })
 })
 app.get('/teachers', (req, res) => {
