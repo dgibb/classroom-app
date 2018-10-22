@@ -45,6 +45,7 @@
 
 <script>
 import student from './student'
+import axios from 'axios'
 
 export default {
   name: 'classroom',
@@ -64,12 +65,16 @@ export default {
       this.adding = true
     },
     saveStudent: function () {
-      this.studentList.push({
-        id: this.studentList.length + 1,
+      const student = {
         first_name: this.$refs.first.value,
-        last_name: this.$refs.last.value
+        last_name: this.$refs.last.value,
+        class_id: this.classId
+      }
+      axios.post('/students/new', student).then(res => {
+        const id = res.data[0]
+        this.studentList.push({ id, ...student })
+        this.adding = false
       })
-      this.adding = false
     },
     deleteStudent: function (id) {
       console.log('deleting', id)
