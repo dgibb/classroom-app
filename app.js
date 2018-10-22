@@ -42,6 +42,16 @@ app.post('/students/new', (req, res) => {
   }
 })
 
+app.delete('/students/delete', (req, res) => {
+  try {
+    knex('students').where({id: req.body.id}).del().then(() => {
+      res.send(true)
+    })
+  } catch (err) {
+    console.log(err.message);
+  }
+})
+
 app.listen(port, () => {
   console.log('app listening on port ', port)
 })

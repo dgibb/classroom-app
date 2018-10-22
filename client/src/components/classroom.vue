@@ -21,7 +21,7 @@
             :firstName="student.first_name"
             :lastName="student.last_name"
             :id="student.id"
-            :deleteStudent="() => {deleteStudent(student.id).bind(this)}"
+            :deleteStudent="() => { deleteStudent(student.id) }"
             :key="student.id"
             />
             <tr v-if="adding">
@@ -72,18 +72,21 @@ export default {
       }
       axios.post('/students/new', student).then(res => {
         const id = res.data[0]
-        this.studentList.push({ id, ...student })
+        this.mutStudentList.push({ id, ...student })
         this.adding = false
       })
     },
     deleteStudent: function (id) {
       console.log('deleting', id)
-      let index = 0
-      while (this.studentList[index].id !== id && index < this.studentList.length) {
-        index++
-      }
-      console.log(index)
-      this.studentList.splice(index, 1)
+
+      axios.delete('/students/delete', { data: { id: id } }).then(res => {
+        let index = 0
+        while (this.mutStudentList[index].id !== id && index < this.mutStudentList.length) {
+          index++
+        }
+        console.log(index)
+        this.mutStudentList.splice(index, 1)
+      })
     },
     cancelAdd: function () {
       this.adding = false
