@@ -52,7 +52,7 @@ export default {
     getStudentsFromDatabase: function () {
       axios.get('/students').then(response => {
         _.map(response.data.rows, (student) => {
-          this.classes[student.class_id].studentList.push(student)
+          this.classes[student.class_id - 1].studentList.push(student)
         })
       })
     }
