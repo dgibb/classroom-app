@@ -78,14 +78,11 @@ export default {
       })
     },
     deleteStudent: function (id) {
-      console.log('deleting', id)
-
       axios.delete('/students/delete', { data: { id: id } }).then(res => {
         let index = 0
         while (this.mutStudentList[index].id !== id && index < this.mutStudentList.length) {
           index++
         }
-        console.log(index)
         this.mutStudentList.splice(index, 1)
       })
     },

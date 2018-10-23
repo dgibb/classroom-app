@@ -1,8 +1,8 @@
 <template lang="html">
   <tr v-if="!editing">
     <th><p>{{id}}</p></th>
-    <th><p>{{firstName}}</p></th>
-    <th><p>{{lastName}}</p></th>
+    <th><p>{{mutFirstName}}</p></th>
+    <th><p>{{mutLastName}}</p></th>
     <th class='button-container'>
       <button @click="editStudent">Edit</button>
       <button @click="deleteStudent">Delete</button>
@@ -10,10 +10,10 @@
   </tr>
   <tr v-else>
     <th>{{id}}</th>
-    <th> <input type="text" name="" :placeholder="firstName"> </th>
-    <th> <input type="text" name="" :placeholder="lastName"> </th>
+    <th> <input ref="first" :placeholder="firstName"> </th>
+    <th> <input ref="last" :placeholder="lastName"> </th>
     <th class='button-container'>
-      <button @click="saveStudent">Save</button>
+      <button @click="updateStudent">Save</button>
       <button @click="cancelEdit">cancel</button>
     </th>
   </tr>
@@ -33,15 +33,24 @@ export default {
   },
   data () {
     return {
-      editing: this.adding
+      editing: this.adding,
+      mutFirstName: this.firstName,
+      mutLastName: this.lastName
     }
   },
   methods: {
     editStudent: function () {
       this.editing = true
     },
-    saveStudent: function () {
-      axios.put('/students/update', { data: { id: this.id } }).then(res => {
+    updateStudent: function () {
+      axios.put('/students/update', {
+        id: this.id,
+        first_name: this.$refs.first.value,
+        last_name: this.$refs.last.value,
+        class_id: this.classId
+      }).then(res => {
+        this.mutFirstName = this.$refs.first.value
+        this.mutLastName = this.$refs.last.value
         this.editing = false
       })
     },
