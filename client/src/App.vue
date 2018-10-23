@@ -8,6 +8,7 @@
       <div class="row">
 
         <classroom v-for="eachClass in classes"
+          :teacher="eachClass.teacher"
           :studentList="eachClass.studentList"
           :classId="eachClass.id"
           :roomNumber="eachClass.room_number"
@@ -38,21 +39,30 @@ export default {
   },
   created () {
     Promise.resolve(this.getClassesfromDatabase())
+      .then(this.getTeachersFromDatabase())
       .then(this.getStudentsFromDatabase())
   },
   methods: {
-    getClassesfromDatabase: function () {
+    getClassesfromDatabase () {
       axios.get('/classes').then(response => {
         this.classes = response.data.rows
         _.map(this.classes, (eachClass) => {
           eachClass.studentList = []
+          eachClass.teacher = {}
         })
       })
     },
-    getStudentsFromDatabase: function () {
+    getStudentsFromDatabase () {
       axios.get('/students').then(response => {
         _.map(response.data.rows, (student) => {
           this.classes[student.class_id - 1].studentList.push(student)
+        })
+      })
+    },
+    getTeachersFromDatabase () {
+      axios.get('/teachers').then(response => {
+        _.map(response.data.rows, (teacher) => {
+          this.classes[teacher.class_id - 1].teacher = teacher
         })
       })
     }

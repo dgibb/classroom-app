@@ -6,6 +6,7 @@
         <h3 class="panel-title room">Room #{{roomNumber}}</h3>
       </div>
       <div class="panel-body">
+        <h3>Taught by: {{teacher.first_name}} {{teacher.last_name}}</h3>
         <table class="table">
           <thead>
             <tr>
@@ -51,6 +52,7 @@ import axios from 'axios'
 export default {
   name: 'classroom',
   props: {
+    teacher: Object,
     studentList: Array,
     classId: Number,
     roomNumber: Number

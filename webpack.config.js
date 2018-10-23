@@ -3,7 +3,7 @@ var webpack = require('webpack')
 
 module.exports = {
   watch: true,
-  entry: './client/src/main.js',
+  entry: ['babel-polyfill', './client/src/main.js'],
   output: {
     path: path.resolve(__dirname, './client/dist'),
     publicPath: '/client/dist/',
