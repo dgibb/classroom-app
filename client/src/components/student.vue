@@ -10,8 +10,8 @@
   </tr>
   <tr v-else>
     <th>{{id}}</th>
-    <th> <input ref="first" :placeholder="firstName"> </th>
-    <th> <input ref="last" :placeholder="lastName"> </th>
+    <th> <input ref="first" :placeholder="mutFirstName"> </th>
+    <th> <input ref="last" :placeholder="mutLastName"> </th>
     <th class='button-container'>
       <button @click="updateStudent">Save</button>
       <button @click="cancelEdit">cancel</button>
