@@ -38,7 +38,7 @@ app.post('/students/new', (req, res) => {
     })
   } catch (err) {
     res.send(false)
-    console.log(err.message);
+    console.log(err.message)
   }
 })
 
@@ -48,7 +48,24 @@ app.delete('/students/delete', (req, res) => {
       res.send(true)
     })
   } catch (err) {
-    console.log(err.message);
+    console.log(err.message)
+  }
+})
+
+app.put('/students/update', (req, res) => {
+  try {
+    knex('students').where('id', req.body.id).update(
+      {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        class_id: req.body.class_id
+      }
+    )
+    .then(() => {
+      res.send(true)
+    })
+  } catch (err) {
+    console.log(err.message)
   }
 })
 
