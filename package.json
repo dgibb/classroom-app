@@ -6,11 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "knex-create-migrate": "knex migrate:make create_tables",
-    "knex-create-seed": "knex seed:make students && knex seed:make classes && knex seed:make teachers",
     "knex-seed": "knex seed:run",
-    "rollback": "knex migrate:rollback",
-    "latest": "knex migrate:latest",
+    "migrate-rollback": "knex migrate:rollback",
+    "migrate-latest": "knex migrate:latest",
     "webpack": "webpack"
   },
   "author": "David Gibb",

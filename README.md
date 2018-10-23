@@ -12,6 +12,6 @@ Have an instance of postgres running that you can connect to to use for this app
 * cd into the project directory
 * run `npm install` to install dependencies
 * create a .env file from the .env.sample by duplicating and changing the details to fit your environment
-* run database migrations with `npm run rollback` then `npm run latest`
+* run database migrations with `npm run migrate-rollback` then `npm run migrate-latest`
 * seed database with `npm run knex-seed`
 * start the app with `npm run start`
