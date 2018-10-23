@@ -21,6 +21,7 @@
             :firstName="student.first_name"
             :lastName="student.last_name"
             :id="student.id"
+            :classId="classId"
             :deleteStudent="() => { deleteStudent(student.id) }"
             :key="student.id"
             />

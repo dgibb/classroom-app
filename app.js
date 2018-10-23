@@ -52,6 +52,16 @@ app.delete('/students/delete', (req, res) => {
   }
 })
 
+app.put('/students/update', (req, res) => {
+  knex('students').where('id', req.body.id).update(
+    {
+      first_name: req.body.first_name
+      last_name: req.body.last_name
+      class_id: req.body.class_id
+    }
+  )
+})
+
 app.listen(port, () => {
   console.log('app listening on port ', port)
 })

@@ -20,12 +20,15 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'student',
   props: {
     firstName: String,
     lastName: String,
     id: Number,
+    classId: Number,
     deleteStudent: Function
   },
   data () {
@@ -38,7 +41,9 @@ export default {
       this.editing = true
     },
     saveStudent: function () {
-      this.editing = false
+      axios.put('/students/update', { data: { id: this.id } }).then(res => {
+        this.editing = false
+      })
     },
     cancelEdit: function () {
       this.editing = false
